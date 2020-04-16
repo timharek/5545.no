@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5545.no</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="src/vue.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div id="app">
+            <h1>Været på Vormedal</h1>
+            <p>{{ weatherType }}</p>
+            <img :src="weatherImg">
+            <p>{{ temperature }} &deg;C</p>
+
+            <button @click="getWeather('59.355091', '5.323378')">
+                🔁
+            </button>
+
+            <h2>Custom værvarsel</h2>
+            <form>
+                <input type="text" ref="lat" placeholder="Lat">
+                <input type="text" ref="lon" placeholder="Lon">
+                <button @click.prevent="getCustomWeather">
+                    Oppdater
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="src/index.js"></script>
+</body>
+</html>
+<!-- Bergen: 60.388068, 5.331854 -->
+<!-- Thailand: 13.753939, 100.501289 -->
