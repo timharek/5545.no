@@ -16,6 +16,14 @@
             <img :src="weatherImg">
             <p>{{ temperature }} &deg;C</p>
 
+            <div class="forecast">
+                <ul>
+                    <li v-for="forecast in forecasts">
+                        {{ forecast.time }}: {{ forecast.temp }} &deg;C
+                    </li>
+                </ul>
+            </div>
+
             <!-- <span class="refresh-btn" @click="getWeather('59.355091', '5.323378')">
                 🔁
             </span> -->
