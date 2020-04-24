@@ -4,6 +4,14 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
+    background: rgb(34,193,195);
+    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(51,253,45,1) 100%); 
+    color: white;
+
+    @media (prefers-color-scheme: dark) {
+        background: rgb(15,93,94);
+        background: linear-gradient(90deg, rgba(15,93,94,1) 0%, rgba(25,128,22,1) 100%); 
+      }
 }
 
 .wrapper {
@@ -11,4 +19,13 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    
+    #app {
+        text-align: center;
+        
+        .refresh-btn {
+            cursor: pointer;
+        }
+    }
 }
+

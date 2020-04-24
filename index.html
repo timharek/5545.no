@@ -12,22 +12,22 @@
 
         <div id="app">
             <h1>Været på Vormedal</h1>
-            <p>{{ weatherType }}</p>
+            <!-- <p>{{ weatherType }}</p> -->
             <img :src="weatherImg">
             <p>{{ temperature }} &deg;C</p>
 
-            <button @click="getWeather('59.355091', '5.323378')">
+            <!-- <span class="refresh-btn" @click="getWeather('59.355091', '5.323378')">
                 🔁
-            </button>
+            </span> -->
 
-            <h2>Custom værvarsel</h2>
+            <!-- <h2>Custom værvarsel</h2>
             <form>
                 <input type="text" ref="lat" placeholder="Lat">
                 <input type="text" ref="lon" placeholder="Lon">
                 <button @click.prevent="getCustomWeather">
                     Oppdater
                 </button>
-            </form>
+            </form> -->
         </div>
 
     </div>
