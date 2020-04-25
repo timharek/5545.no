@@ -33,4 +33,15 @@ html, body {
 .wrapper #app .refresh-btn {
   cursor: pointer;
 }
+
+.wrapper #app .forecast .three-hours {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.wrapper #app .forecast .three-hours th, .wrapper #app .forecast .three-hours td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
 /*# sourceMappingURL=style.css.map */
