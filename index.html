@@ -12,8 +12,10 @@
 
         <div id="app">
             <h1>Været på Vormedal {{ date }}</h1>
-            <img :src="weatherImg">
-            <p>{{ temperature }} &deg;C <span v-if="rainMax > 0">- {{ rainMin}}-{{ rainMax }} mm</span> - {{ wind }} m/s</p>
+            <div class="now">
+                <img :src="weatherImg">
+                <span>{{ temperature }} &deg;C <span v-if="rainMax > 0">- {{ rainMin}}-{{ rainMax }} mm</span> - {{ wind }} m/s</span>
+            </div>
 
             <div class="forecast">
                 <h2>De neste 3 timene</h2>
