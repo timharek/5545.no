@@ -25,8 +25,10 @@ var app = new Vue({
             const localData = await this.getWeatherData('https://api.met.no/weatherapi/locationforecast/1.9/.json?lat='+ lat + '&lon='+ lon + '')
 
             //console.log(localData.product)
-
-            this.date = localData.created
+            var today = new Date()
+            var day = today.getDate()
+            var month = today.getMonth() + 1
+            this.date = day + "." + month
             this.temperature = localData.product.time[0].location.temperature.value
             this.wind = localData.product.time[0].location.windSpeed.mps
             this.rainMin = localData.product.time[1].location.precipitation.minvalue
@@ -54,7 +56,7 @@ var app = new Vue({
                 if ((i % 2 == 0)) {
                     locForecastsEven.push({ 
                         temp: forecast.time[i].location.temperature.value,
-                        time: forecast.time[i].to,
+                        time: this.cleanTime(forecast.time[i].to),
                         /* weather: '', */
                         wind: forecast.time[i].location.windSpeed.mps,
                         wind_desc: forecast.time[i].location.windSpeed.name,
@@ -86,6 +88,11 @@ var app = new Vue({
         },
         getAverageRain: function(rainMin, rainMax) {
             return (Number(rainMax) + Number(rainMin)) / 2
+        },
+        cleanTime: function(time) {
+            var result = time.substring(11)
+            result = result.slice(0, -7)
+            return result
         }
     },
     beforeMount() {
