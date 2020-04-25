@@ -11,17 +11,45 @@
     <div class="wrapper">
 
         <div id="app">
-            <h1>Været på Vormedal</h1>
-            <!-- <p>{{ weatherType }}</p> -->
+            <h1>Været på Vormedal {{ date }}</h1>
             <img :src="weatherImg">
-            <p>{{ temperature }} &deg;C</p>
+            <p>{{ temperature }} &deg;C - {{ rainMin}}-{{ rainMax }} mm - {{ wind }} m/s</p>
 
             <div class="forecast">
-                <ul>
-                    <li v-for="forecast in forecasts">
-                        {{ forecast.time }}: {{ forecast.temp }} &deg;C
-                    </li>
-                </ul>
+                <table class="forecasts">
+                    <thead>
+                        <tr>
+                            <th>Tid</th>
+                            <th>Vær</th>
+                            <th>Temp.</th>
+                            <th>Nedbør mm</th>
+                            <th>Vind m/s</th>
+                            <th>Vindbeskrivelse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="forecast in forecasts">
+                            <td>
+                                {{ forecast.time }}
+                            </td>
+                            <td>
+                                <img :src="forecast.weather">
+                            </td>
+                            <td>
+                                {{ forecast.temp }}
+                            </td>
+                            <td>
+                                {{ forecast.rain }}
+                            </td>
+                            <td>
+                                {{ forecast.wind }}
+                            </td>
+                            <td>
+                                {{ forecast.wind_desc }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- <span class="refresh-btn" @click="getWeather('59.355091', '5.323378')">
