@@ -8,7 +8,8 @@ var app = new Vue({
         rainMax: '',
         weatherType: '',
         weatherImg: '',
-        nextThreeHours: []
+        nextThreeHours: [],
+        forecastNextDays: []
     },
     methods: {
         getWeatherData: async function(url) {
@@ -39,47 +40,50 @@ var app = new Vue({
             this.weatherType = weatherData.time[1].location.symbol.id
             this.weatherImg =  this.getWeatherImage(weatherData.time[1].location.symbol.number)
 
-            this.setForecast(weatherData)
+            this.setForecastNextThreeHours(weatherData)
+            this.setForecastNextDays(weatherData)
         },
         getWeatherImage: function(weatherId) {
             return 'https://api.met.no/weatherapi/weathericon/1.1/?content_type=image%2Fpng&symbol=' + weatherId
         },
-        setForecast: function(forecast) {
-            console.log(forecast)
-
-            var locForecastsEven = []
-            var locForecastsOdd = []
+        setForecastNextThreeHours: function(forecast) {
+            // This is for the Met.no API
+            var nextThreeHoursEven = []
+            var nextThreeHoursOdd = []
 
             // Three hour forecast
             for (var i = 4; i < 10; i++) {
                 if ((i % 2 == 0)) {
-                    locForecastsEven.push({ 
+                    nextThreeHoursEven.push({ 
                         temp: this.dotToComma(forecast.time[i].location.temperature.value),
                         time: this.cleanTime(forecast.time[i].to),
                         wind: this.roundNumber(forecast.time[i].location.windSpeed.mps),
                         wind_desc: forecast.time[i].location.windSpeed.name,
                     })
                 } else {
-                    locForecastsOdd.push({
+                    nextThreeHoursOdd.push({
                         weather: this.getWeatherImage(forecast.time[i].location.symbol.number),
                         rain: this.getAverageRain(forecast.time[i].location.precipitation.minvalue, forecast.time[i].location.precipitation.maxvalue),
                     })
                 }
             }
 
-            for (var i = 0; i < locForecastsOdd.length; i++) {
-                locForecastsOdd[i] = {
-                    temp: locForecastsEven[i].temp, 
-                    time: locForecastsEven[i].time, 
-                    wind: locForecastsEven[i].wind, 
-                    wind_desc: locForecastsEven[i].wind_desc, 
-                    weather: locForecastsOdd[i].weather, 
-                    rain: locForecastsOdd[i].rain}
+            for (var i = 0; i < nextThreeHoursOdd.length; i++) {
+                nextThreeHoursOdd[i] = {
+                    temp: nextThreeHoursEven[i].temp, 
+                    time: nextThreeHoursEven[i].time, 
+                    wind: nextThreeHoursEven[i].wind, 
+                    wind_desc: nextThreeHoursEven[i].wind_desc, 
+                    weather: nextThreeHoursOdd[i].weather, 
+                    rain: nextThreeHoursOdd[i].rain}
             }
 
-            locForecastsOdd.forEach(forecast => {
+            nextThreeHoursOdd.forEach(forecast => {
                 this.nextThreeHours.push(forecast)
             });
+        },
+        setForecastNextDays: function(forecast) {
+            // TODO: #2
         },
         getAverageRain: function(rainMin, rainMax) {
             return (Number(rainMax) + Number(rainMin)) / 2
