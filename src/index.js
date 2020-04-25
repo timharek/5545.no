@@ -8,7 +8,7 @@ var app = new Vue({
         rainMax: '',
         weatherType: '',
         weatherImg: '',
-        forecasts: []
+        nextThreeHours: []
     },
     methods: {
         getWeatherData: async function(url) {
@@ -78,7 +78,7 @@ var app = new Vue({
             }
 
             locForecastsOdd.forEach(forecast => {
-                this.forecasts.push(forecast)
+                this.nextThreeHours.push(forecast)
             });
         },
         getAverageRain: function(rainMin, rainMax) {

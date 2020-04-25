@@ -29,24 +29,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="forecast in forecasts">
+                        <tr v-for="hourSlot in nextThreeHours">
                             <td>
-                                {{ forecast.time }}
+                                {{ hourSlot.time }}
                             </td>
                             <td>
-                                <img :src="forecast.weather">
+                                <img :src="hourSlot.weather">
                             </td>
                             <td>
-                                {{ forecast.temp }} &deg;C
+                                {{ hourSlot.temp }} &deg;C
                             </td>
                             <td>
-                                <span v-if="forecast.rain > 0">{{ forecast.rain }} mm</span>
+                                <span v-if="hourSlot.rain > 0">{{ hourSlot.rain }} mm</span>
                             </td>
                             <td>
-                                {{ forecast.wind }}
+                                {{ hourSlot.wind }}
                             </td>
                             <td>
-                                {{ forecast.wind_desc }}
+                                {{ hourSlot.wind_desc }}
                             </td>
                         </tr>
                     </tbody>
