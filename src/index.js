@@ -23,9 +23,16 @@ var app = new Vue({
             return response.json()
         },
         getWeather: async function(lat, lon) {
-            const localData = await this.getWeatherData('https://api.met.no/weatherapi/locationforecast/1.9/.json?lat='+ lat + '&lon='+ lon + '')
-            
-            this.setWeather(localData.product)
+            const tenMin = 1000 * 60 * 10;
+            if (localStorage.getItem('localData') == null || Date.now() - localStorage.getItem('time') > tenMin) {
+                console.log("Getting new weather data...")
+                const localData = await this.getWeatherData('https://api.met.no/weatherapi/locationforecast/1.9/.json?lat='+ lat + '&lon='+ lon + '')
+                localStorage.setItem('localData', JSON.stringify(localData))
+                localStorage.setItem('time', Date.now())
+            }
+            var retrivedData = localStorage.getItem('localData')
+
+            this.setWeather(JSON.parse(retrivedData).product)
         },
         getCustomWeather: function() {
             this.getWeather(this.$refs.lat.value, this.$refs.lon.value)
