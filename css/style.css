@@ -64,7 +64,7 @@ html, body {
 }
 
 @media screen and (max-width: 475px) {
-  .wrapper #app .forecast .three-hours th:nth-child(6), .wrapper #app .forecast .three-hours td:nth-child(6), .wrapper #app .forecast .next-days th:nth-child(6), .wrapper #app .forecast .next-days td:nth-child(6) {
+  .wrapper #app .forecast .three-hours th:last-of-type, .wrapper #app .forecast .three-hours td:last-of-type, .wrapper #app .forecast .next-days th:last-of-type, .wrapper #app .forecast .next-days td:last-of-type {
     display: none;
   }
 }

@@ -52,7 +52,7 @@ html, body {
                     border-bottom: 1px solid #ddd;
 
                     @media screen and (max-width: 475px) {
-                        &:nth-child(6) {
+                        &:last-of-type {
                             display: none;
                         } 
                     }

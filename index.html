@@ -16,7 +16,13 @@
             <h2 class="date">{{ date }}</h2>
             <div class="now">
                 <img :src="weatherImg">
-                <span>{{ temperature.toLocaleString('no-NB') }} &deg;C <span v-if="rainMax > 0">- {{ rainMin.toLocaleString('no-NB') }}-{{ rainMax.toLocaleString('no-NB') }} mm</span> - {{ wind }} m/s</span>
+                <span>
+                    {{ temperature.toLocaleString('no-NB') }} &deg;C 
+                    <span v-if="rainMax > 0">
+                        - <i class="fas fa-umbrella"></i> {{ rainMin.toLocaleString('no-NB') }}-{{ rainMax.toLocaleString('no-NB') }} mm
+                    </span> 
+                    - <i class="fas fa-wind"></i> {{ wind }} m/s
+                </span>
             </div>
 
             <div class="forecast">
@@ -24,12 +30,24 @@
                 <table class="three-hours">
                     <thead>
                         <tr>
-                            <th>Tid</th>
-                            <th>Vær</th>
-                            <th>Temp.</th>
-                            <th>Nedbør</th>
-                            <th>Vind m/s</th>
-                            <th>Vindbeskrivelse</th>
+                            <th>
+                                <i class="far fa-clock"></i>
+                            </th>
+                            <th>
+                                Vær
+                            </th>
+                            <th>
+                                <i class="fas fa-thermometer-three-quarters"></i> Temp.
+                            </th>
+                            <th>
+                                <i class="fas fa-umbrella"></i> Nedbør
+                            </th>
+                            <th>
+                                <i class="fas fa-wind"></i> Vind m/s
+                            </th>
+                            <th>
+                                Vindbeskrivelse
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,13 +77,27 @@
                 <table class="next-days">
                     <thead>
                         <tr>
-                            <th>Dato</th>
-                            <th>Tid</th>
-                            <th>Vær</th>
-                            <th>Temp.</th>
-                            <th>Nedbør</th>
-                            <th>Vind m/s</th>
-                            <th>Vindbeskrivelse</th>
+                            <th>
+                                <i class="far fa-calendar-alt"></i>
+                            </th>
+                            <th>
+                                <i class="far fa-clock"></i>
+                            </th>
+                            <th>
+                                Vær
+                            </th>
+                            <th>
+                                <i class="fas fa-thermometer-three-quarters"></i> Temp.
+                            </th>
+                            <th>
+                                <i class="fas fa-umbrella"></i> Nedbør
+                            </th>
+                            <th>
+                                <i class="fas fa-wind"></i> Vind m/s
+                            </th>
+                            <th>
+                                Vindbeskrivelse
+                            </th>
                         </tr>
                     </thead>
                     <tbody v-for="hourSlot in forecastNextDays">

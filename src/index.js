@@ -127,8 +127,10 @@ var app = new Vue({
 
             var tempArr = []
             for (var index = 0; index < forecast.time.length; index++) {
+                var fulldate = String(forecast.time[indices[index]].from).substring(5, 10)
+                var date = fulldate.split('-')
                 this.forecastNextDays.push({
-                    date: String(forecast.time[indices[index]].from).substring(0, 10),
+                    date: date[1] + '-' + date[0],
                     time: this.cleanTime(forecast.time[indices[index]].from),
                     tempMax: forecast.time[indices[index]].location.maxTemperature.value,
                     tempMin: forecast.time[indices[index]].location.minTemperature.value,
