@@ -91,10 +91,9 @@ var app = new Vue({
             });
         },
         findForecastForNextDays: function(forecast) {
-            var date = new Date().toISOString().substring(0, 10)
+            var date = this.getLocalDate()
 
             var nextDays = []
-
             var moreThan1Hour = []
 
             for (var i = 0; i < forecast.time.length; i++) {
@@ -117,6 +116,7 @@ var app = new Vue({
 
             console.log(nextDays)
             console.log(moreThan1Hour)
+            console.log(new Date().toLocaleDateString())
             console.log(date)
 
             this.setForecastNextDays(forecast, moreThan1Hour)
@@ -142,6 +142,12 @@ var app = new Vue({
         },
         getAverageRain: function(rainMin, rainMax) {
             return (Number(rainMax) + Number(rainMin)) / 2
+        },
+        getLocalDate: function() {
+            // Get the local date in ISO format
+            var dateTemp = new Date();
+            dateTemp.setMinutes(dateTemp.getMinutes() - dateTemp.getTimezoneOffset());
+            return dateTemp.toISOString().substring(0, 10);
         },
         cleanTime: function(time) {
             var result = time.substring(11)
