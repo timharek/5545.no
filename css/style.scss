@@ -18,7 +18,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
     
     #app {
         max-width: 100%;
@@ -37,7 +37,7 @@ html, body {
         }
 
         .forecast {
-            .three-hours {
+            .three-hours, .next-days {
                 border-collapse: collapse;
                 width: 100%;
 

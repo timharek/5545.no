@@ -54,6 +54,45 @@
                         </tr>
                     </tbody>
                 </table>
+                <h2>Dagene framover</h2>
+                <table class="next-days">
+                    <thead>
+                        <tr>
+                            <th>Dato</th>
+                            <th>Tid</th>
+                            <th>Vær</th>
+                            <th>Temp.</th>
+                            <th>Nedbør</th>
+                            <th>Vind m/s</th>
+                            <th>Vindbeskrivelse</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="hourSlot in forecastNextDays">
+                        <tr>
+                            <td>
+                                {{ hourSlot.date }}
+                            </td>
+                            <td>
+                                {{ hourSlot.time }}
+                            </td>
+                            <td>
+                                <img :src="hourSlot.weather">
+                            </td>
+                            <td>
+                                {{ hourSlot.tempMax.toLocaleString('no-NB') }} &deg;C
+                            </td>
+                            <td>
+                                <span v-if="hourSlot.rain > 0">{{ hourSlot.rain.toLocaleString('no-NB') }} mm</span>
+                            </td>
+                            <td>
+                                {{ hourSlot.wind }}
+                            </td>
+                            <td>
+                                {{ hourSlot.wind_desc }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- <span class="refresh-btn" @click="getWeather('59.355091', '5.323378')">

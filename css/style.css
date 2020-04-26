@@ -27,7 +27,7 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .wrapper #app {
@@ -52,19 +52,19 @@ html, body {
           align-items: center;
 }
 
-.wrapper #app .forecast .three-hours {
+.wrapper #app .forecast .three-hours, .wrapper #app .forecast .next-days {
   border-collapse: collapse;
   width: 100%;
 }
 
-.wrapper #app .forecast .three-hours th, .wrapper #app .forecast .three-hours td {
+.wrapper #app .forecast .three-hours th, .wrapper #app .forecast .three-hours td, .wrapper #app .forecast .next-days th, .wrapper #app .forecast .next-days td {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd;
 }
 
 @media screen and (max-width: 475px) {
-  .wrapper #app .forecast .three-hours th:nth-child(6), .wrapper #app .forecast .three-hours td:nth-child(6) {
+  .wrapper #app .forecast .three-hours th:nth-child(6), .wrapper #app .forecast .three-hours td:nth-child(6), .wrapper #app .forecast .next-days th:nth-child(6), .wrapper #app .forecast .next-days td:nth-child(6) {
     display: none;
   }
 }

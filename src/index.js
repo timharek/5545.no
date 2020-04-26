@@ -9,7 +9,7 @@ var app = new Vue({
         weatherType: '',
         weatherImg: '',
         nextThreeHours: [],
-        forecastNextDays: []
+        forecastNextDays: [],
     },
     methods: {
         getWeatherData: async function(url) {
@@ -48,7 +48,7 @@ var app = new Vue({
             this.weatherImg =  this.getWeatherImage(weatherData.time[1].location.symbol.number)
 
             this.setForecastNextThreeHours(weatherData)
-            this.setForecastNextDays(weatherData)
+            this.findForecastForNextDays(weatherData)
         },
         getWeatherImage: function(weatherId) {
             return 'https://api.met.no/weatherapi/weathericon/1.1/?content_type=image%2Fpng&symbol=' + weatherId
@@ -90,7 +90,7 @@ var app = new Vue({
                 this.nextThreeHours.push(forecast)
             });
         },
-        setForecastNextDays: function(forecast) {
+        findForecastForNextDays: function(forecast) {
             var date = new Date().toISOString().substring(0, 10)
 
             var nextDays = []
@@ -118,6 +118,25 @@ var app = new Vue({
             console.log(nextDays)
             console.log(moreThan1Hour)
             console.log(date)
+
+            this.setForecastNextDays(forecast, moreThan1Hour)
+        },
+        setForecastNextDays: function(forecast, indices) {
+            console.log(indices[0])
+            console.log(forecast.time[indices[0]].location.minTemperature.value)
+
+            var tempArr = []
+            for (var index = 0; index < forecast.time.length; index++) {
+                this.forecastNextDays.push({
+                    date: String(forecast.time[indices[index]].from).substring(0, 10),
+                    time: this.cleanTime(forecast.time[indices[index]].from),
+                    tempMax: forecast.time[indices[index]].location.maxTemperature.value,
+                    tempMin: forecast.time[indices[index]].location.minTemperature.value,
+                    weather: this.getWeatherImage(forecast.time[indices[index]].location.symbol.number),
+                    wind: this.roundWindSpeed(forecast.time[indices[index]+1].location.windSpeed.mps),
+                    wind_desc: forecast.time[indices[index]+1].location.windSpeed.name,
+                })
+            }
         },
         getAverageRain: function(rainMin, rainMax) {
             return (Number(rainMax) + Number(rainMin)) / 2
