@@ -68,4 +68,34 @@ html, body {
     display: none;
   }
 }
+
+footer {
+  position: fixed;
+  padding: 10px;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  background: #212121;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+a {
+  color: #0096f5;
+  text-decoration: none;
+  font-weight: 700;
+  opacity: 1;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+a:active {
+  opacity: 0.75;
+}
 /*# sourceMappingURL=style.css.map */

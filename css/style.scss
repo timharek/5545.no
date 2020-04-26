@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+$primary-color: #0096f5;;
+$primary-dark-color: #212121;
+$secondary-dark-color: #555;
+$primary-light-color: white;
+
 html, body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     background: rgb(34,193,195);
     background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(51,253,45,1) 100%); 
-    color: white;
+    color: $primary-light-color;
 
     @media (prefers-color-scheme: dark) {
         background: rgb(15,93,94);
@@ -57,3 +62,28 @@ html, body {
     }
 }
 
+footer {
+    position:fixed;
+    padding: 10px;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    background:#212121;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 700;
+    opacity: 1;
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    &:active {
+        opacity: 0.75;
+    }
+}
