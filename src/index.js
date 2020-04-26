@@ -39,10 +39,10 @@ var app = new Vue({
         },
         setWeather: function(weatherData) {
             this.date = this.getTodaysDate()
-            this.temperature = this.dotToComma(weatherData.time[0].location.temperature.value)
-            this.wind = this.roundNumber(weatherData.time[0].location.windSpeed.mps)
-            this.rainMin = this.dotToComma(weatherData.time[1].location.precipitation.minvalue)
-            this.rainMax = this.dotToComma(weatherData.time[1].location.precipitation.maxvalue)
+            this.temperature = Number(weatherData.time[0].location.temperature.value)
+            this.wind = this.roundWindSpeed(weatherData.time[0].location.windSpeed.mps)
+            this.rainMin = Number(weatherData.time[1].location.precipitation.minvalue)
+            this.rainMax = Number(weatherData.time[1].location.precipitation.maxvalue)
 
             this.weatherType = weatherData.time[1].location.symbol.id
             this.weatherImg =  this.getWeatherImage(weatherData.time[1].location.symbol.number)
@@ -62,15 +62,16 @@ var app = new Vue({
             for (var i = 4; i < 10; i++) {
                 if ((i % 2 == 0)) {
                     nextThreeHoursEven.push({ 
-                        temp: this.dotToComma(forecast.time[i].location.temperature.value),
+                        temp: Number(forecast.time[i].location.temperature.value),
                         time: this.cleanTime(forecast.time[i].to),
-                        wind: this.roundNumber(forecast.time[i].location.windSpeed.mps),
+                        wind: this.roundWindSpeed(forecast.time[i].location.windSpeed.mps),
                         wind_desc: forecast.time[i].location.windSpeed.name,
                     })
                 } else {
+                    var rain = this.roundRain(this.getAverageRain(forecast.time[i].location.precipitation.minvalue, forecast.time[i].location.precipitation.maxvalue))
                     nextThreeHoursOdd.push({
                         weather: this.getWeatherImage(forecast.time[i].location.symbol.number),
-                        rain: this.getAverageRain(forecast.time[i].location.precipitation.minvalue, forecast.time[i].location.precipitation.maxvalue),
+                        rain: rain,
                     })
                 }
             }
@@ -127,11 +128,11 @@ var app = new Vue({
             result = result.slice(0, -7)
             return result
         },
-        roundNumber: function(number) {
-            return Math.round(Number(number))
+        roundRain: function(number) {
+            return Math.round(Number(number) * 10) / 10
         },
-        dotToComma: function(numerWithDot) {
-            return numerWithDot.replace(".", ",")
+        roundWindSpeed: function(number) {
+            return Math.round(Number(number))
         },
         getTodaysDate: function() {
             var today = new Date()

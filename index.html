@@ -14,7 +14,7 @@
             <h1>Været på Vormedal {{ date }}</h1>
             <div class="now">
                 <img :src="weatherImg">
-                <span>{{ temperature }} &deg;C <span v-if="rainMax > 0">- {{ rainMin}}-{{ rainMax }} mm</span> - {{ wind }} m/s</span>
+                <span>{{ temperature.toLocaleString('no-NB') }} &deg;C <span v-if="rainMax > 0">- {{ rainMin.toLocaleString('no-NB') }}-{{ rainMax.toLocaleString('no-NB') }} mm</span> - {{ wind }} m/s</span>
             </div>
 
             <div class="forecast">
@@ -39,10 +39,10 @@
                                 <img :src="hourSlot.weather">
                             </td>
                             <td>
-                                {{ hourSlot.temp }} &deg;C
+                                {{ hourSlot.temp.toLocaleString('no-NB') }} &deg;C
                             </td>
                             <td>
-                                <span v-if="hourSlot.rain > 0">{{ hourSlot.rain }} mm</span>
+                                <span v-if="hourSlot.rain > 0">{{ hourSlot.rain.toLocaleString('no-NB') }} mm</span>
                             </td>
                             <td>
                                 {{ hourSlot.wind }}
