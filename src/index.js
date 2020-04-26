@@ -90,7 +90,34 @@ var app = new Vue({
             });
         },
         setForecastNextDays: function(forecast) {
-            // TODO: #2
+            var date = new Date().toISOString().substring(0, 10)
+
+            var nextDays = []
+            var todaysDate = '2020-04-26' // TODO: Automatically use todays date
+
+            var moreThan1Hour = []
+
+            for (var i = 0; i < forecast.time.length; i++) {
+                if (forecast.time[i].from.substring(0, 10) != date) {
+                    nextDays.push(forecast.time[i].from)
+                }
+            }
+
+            for (var i = 0; i < forecast.time.length; i++) {
+                var from = forecast.time[i].from.substring(11, 13)
+                var to = forecast.time[i].to.substring(11, 13)
+                var difference = Number(to) - Number(from)
+
+                if (date != forecast.time[i].to.substring(0, 10)) {
+                    if (difference > 1) {
+                        moreThan1Hour.push(i)
+                    }
+                }
+            }
+
+            console.log(nextDays)
+            console.log(moreThan1Hour)
+            console.log(date)
         },
         getAverageRain: function(rainMin, rainMax) {
             return (Number(rainMax) + Number(rainMin)) / 2
