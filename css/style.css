@@ -39,6 +39,10 @@ html, body {
   cursor: pointer;
 }
 
+.wrapper #app .date::first-letter {
+  text-transform: capitalize;
+}
+
 .wrapper #app .now {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -94,7 +94,6 @@ var app = new Vue({
             var date = new Date().toISOString().substring(0, 10)
 
             var nextDays = []
-            var todaysDate = '2020-04-26' // TODO: Automatically use todays date
 
             var moreThan1Hour = []
 
@@ -135,10 +134,10 @@ var app = new Vue({
             return Math.round(Number(number))
         },
         getTodaysDate: function() {
-            var today = new Date()
-            var day = today.getDate()
-            var month = today.getMonth() + 1
-            return day + "." + month
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var date = new Date()
+            
+            return date.toLocaleDateString(undefined, options)
         }
     },
     beforeMount() {
