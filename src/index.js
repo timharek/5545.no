@@ -50,13 +50,19 @@ var app = new Vue({
             this.setForecastNextThreeHours(weatherData)
             this.findForecastForNextDays(weatherData)
         },
-        getWeatherImage: function(weatherId) {
-            return 'https://api.met.no/weatherapi/weathericon/1.1/?content_type=image%2Fpng&symbol=' + weatherId
+        getWeatherImage: function(weatherId, time) {
+            if (time >= 6) {
+                return 'https://api.met.no/weatherapi/weathericon/1.1/?content_type=image%2Fpng&symbol=' + weatherId
+            } else {
+                return 'https://api.met.no/weatherapi/weathericon/1.1/?content_type=image%2Fpng&symbol=' + weatherId + '&is_night=1'
+            }
         },
         setForecastNextThreeHours: function(forecast) {
             // This is for the Met.no API
             var nextThreeHoursEven = []
             var nextThreeHoursOdd = []
+
+            console.log(this.cleanTime(forecast.time[0].to))
 
             // Three hour forecast
             for (var i = 4; i < 10; i++) {
@@ -70,7 +76,7 @@ var app = new Vue({
                 } else {
                     var rain = this.roundRain(this.getAverageRain(forecast.time[i].location.precipitation.minvalue, forecast.time[i].location.precipitation.maxvalue))
                     nextThreeHoursOdd.push({
-                        weather: this.getWeatherImage(forecast.time[i].location.symbol.number),
+                        weather: this.getWeatherImage(forecast.time[i].location.symbol.number, this.cleanTime(forecast.time[i].to)),
                         rain: rain,
                     })
                 }
@@ -134,7 +140,7 @@ var app = new Vue({
                     time: this.cleanTime(forecast.time[indices[index]].from),
                     tempMax: forecast.time[indices[index]].location.maxTemperature.value,
                     tempMin: forecast.time[indices[index]].location.minTemperature.value,
-                    weather: this.getWeatherImage(forecast.time[indices[index]].location.symbol.number),
+                    weather: this.getWeatherImage(forecast.time[indices[index]].location.symbol.number, this.cleanTime(forecast.time[indices[index]].from)),
                     wind: this.roundWindSpeed(forecast.time[indices[index]+1].location.windSpeed.mps),
                     wind_desc: forecast.time[indices[index]+1].location.windSpeed.name,
                 })
