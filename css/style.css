@@ -33,7 +33,7 @@ header h1 {
           align-items: center;
 }
 
-.wrapper .now-forecast {
+.wrapper .nowcast {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -47,17 +47,17 @@ header h1 {
   background: #fff;
 }
 
-.wrapper .now-forecast img {
+.wrapper .nowcast img {
   width: 90px;
   margin-right: 20px;
 }
 
-.wrapper .now-forecast .unit,
-.wrapper .now-forecast i {
+.wrapper .nowcast .unit,
+.wrapper .nowcast i {
   font-size: 24px;
 }
 
-.wrapper .now-forecast .type {
+.wrapper .nowcast .type {
   font-size: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67,19 +67,19 @@ header h1 {
           align-items: center;
 }
 
-.wrapper .now-forecast .type:not(:last-child) {
+.wrapper .nowcast .type:not(:last-child) {
   margin-right: 20px;
 }
 
-.wrapper .now-forecast .type .temp {
+.wrapper .nowcast .type .temp {
   color: #cf0000;
 }
 
-.wrapper .now-forecast .type .rain {
+.wrapper .nowcast .type .rain {
   color: #0077d6;
 }
 
-.wrapper .now-forecast .type .wind {
+.wrapper .nowcast .type .wind {
   color: #4d4d4d;
 }
 /*# sourceMappingURL=style.css.map */
