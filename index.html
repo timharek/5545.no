@@ -12,151 +12,39 @@
     <script src="src/vue.js"></script>
   </head>
   <body>
-    <div class="wrapper">
-      <div id="app">
-        <h1>Været på Vormedal</h1>
-        <h2 class="date">{{ date }}</h2>
-        <div class="now">
-          <img :src="weatherImg" />
-          <span>
-            {{ temperature.toLocaleString('no-NB') }} &deg;C
-            <span v-if="rainMax > 0">
-              - <i class="fas fa-umbrella"></i> {{
-              rainMin.toLocaleString('no-NB') }}-{{
-              rainMax.toLocaleString('no-NB') }} mm
-            </span>
-            - <i class="fas fa-wind"></i> {{ wind }} m/s
-          </span>
+    <header>
+      <h1>Være på Vormedal</h1>
+      <h2>5545.no</h2>
+    </header>
+    <div id="app" class="wrapper">
+      <div class="now-forecast">
+        <img :src="current_weatherImg" alt="" />
+        <div class="type">
+          <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
+          <span class="temp"
+            >{{ current_temperature.toLocaleString('no-NB') }}<span class="unit"
+              >&deg;C</span
+            ></span
+          >
         </div>
-
-        <div class="forecast">
-          <h2>De neste 3 timene</h2>
-          <table class="three-hours">
-            <thead>
-              <tr>
-                <th>
-                  <i class="far fa-clock"></i>
-                </th>
-                <th>
-                  Vær
-                </th>
-                <th><i class="fas fa-thermometer-three-quarters"></i> Temp.</th>
-                <th><i class="fas fa-umbrella"></i> Nedbør</th>
-                <th><i class="fas fa-wind"></i> Vind m/s</th>
-                <th>
-                  Vindbeskrivelse
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="hourSlot in nextThreeHours">
-                <td>
-                  {{ hourSlot.time }}
-                </td>
-                <td>
-                  <img :src="hourSlot.weather" />
-                </td>
-                <td>
-                  {{ hourSlot.temp.toLocaleString('no-NB') }} &deg;C
-                </td>
-                <td>
-                  <span v-if="hourSlot.rain > 0"
-                    >{{ hourSlot.rain.toLocaleString('no-NB') }} mm</span
-                  >
-                </td>
-                <td>
-                  {{ hourSlot.wind }}
-                </td>
-                <td>
-                  {{ hourSlot.wind_desc }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h2>Dagene framover</h2>
-          <table class="next-days">
-            <thead>
-              <tr>
-                <th>
-                  <i class="far fa-calendar-alt"></i>
-                </th>
-                <th>
-                  <i class="far fa-clock"></i>
-                </th>
-                <th>
-                  Vær
-                </th>
-                <th><i class="fas fa-thermometer-three-quarters"></i> Temp.</th>
-                <th><i class="fas fa-umbrella"></i> Nedbør</th>
-                <th><i class="fas fa-wind"></i> Vind m/s</th>
-                <th>
-                  Vindbeskrivelse
-                </th>
-              </tr>
-            </thead>
-            <tbody v-for="hourSlot in forecastNextDays">
-              <tr>
-                <td>
-                  {{ hourSlot.date }}
-                </td>
-                <td>
-                  {{ hourSlot.time }}
-                </td>
-                <td>
-                  <img :src="hourSlot.weather" />
-                </td>
-                <td>
-                  {{ hourSlot.tempMax.toLocaleString('no-NB') }} &deg;C
-                </td>
-                <td>
-                  <span v-if="hourSlot.rain > 0"
-                    >{{ hourSlot.rain.toLocaleString('no-NB') }} mm</span
-                  >
-                </td>
-                <td>
-                  {{ hourSlot.wind }}
-                </td>
-                <td>
-                  {{ hourSlot.wind_desc }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="type">
+          <i aria-hidden="true" class="fas fa-umbrella"></i>
+          <span class="rain"
+            >{{ current_rain.toLocaleString('no-NB') }}<span class="unit"
+              >mm</span
+            ></span
+          >
         </div>
-
-        <!-- <span class="refresh-btn" @click="getWeather('59.355091', '5.323378')">
-                🔁
-            </span> -->
-
-        <!-- <h2>Custom værvarsel</h2>
-            <form>
-                <input type="text" ref="lat" placeholder="Lat">
-                <input type="text" ref="lon" placeholder="Lon">
-                <button @click.prevent="getCustomWeather">
-                    Oppdater
-                </button>
-            </form> -->
+        <div class="type">
+          <i class="fas fa-wind"></i>
+          <span class="wind"
+            >{{ current_wind.toLocaleString('no-NB') }}<span class="unit"
+              >m/s</span
+            ></span
+          >
+        </div>
       </div>
     </div>
-    <footer>
-      <span>
-        Av <a href="https://github.com/timharek" target="_blank">Adipid</a>
-      </span>
-      <span>
-        <a href="https://github.com/timharek/5545.no" target="_blank">
-          <i class="fab fa-github" aria-hidden="true"></i>
-        </a>
-      </span>
-      <span>
-        Laget med
-        <a
-          href="https://api.met.no/weatherapi/locationforecast/1.9/documentation"
-          target="_blank"
-          >Yr.no API</a
-        >
-      </span>
-    </footer>
-
     <script src="src/index.js"></script>
   </body>
 </html>
