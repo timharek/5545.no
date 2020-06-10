@@ -9,6 +9,7 @@ var app = new Vue({
     current_rain: "",
     current_weatherType: "",
     current_weatherImg: "",
+    nowcast: [],
     nextThreeHours: [],
     forecastNextDays: [],
   },
@@ -45,18 +46,32 @@ var app = new Vue({
       this.setWeather(JSON.parse(retrivedData).properties);
     },
     setWeather: function (weatherData) {
-      this.current_weatherType =
-        weatherData.timeseries[0].data.next_1_hours.summary.symbol_code;
-      this.current_temperature =
-        weatherData.timeseries[0].data.instant.details.air_temperature;
-      this.current_rain =
-        weatherData.timeseries[0].data.next_1_hours.details.precipitation_amount;
-      this.current_wind =
-        weatherData.timeseries[0].data.instant.details.wind_speed;
-      this.current_weatherImg = this.getWeatherImage(this.current_weatherType);
+      weatherData.timeseries.forEach((forecast) => {
+        var forcastHour = forecast.time.substring(0, 13);
+        if (forcastHour === this.getCurrentHour()) {
+          this.current_weatherType =
+            forecast.data.next_1_hours.summary.symbol_code;
+          this.current_temperature =
+            forecast.data.instant.details.air_temperature;
+          this.current_rain =
+            forecast.data.next_1_hours.details.precipitation_amount;
+          this.current_wind = forecast.data.instant.details.wind_speed;
+          this.current_weatherImg = this.getWeatherImage(
+            this.current_weatherType
+          );
+
+          console.log(forecast.data.next_1_hours.summary.symbol_code);
+        }
+      });
     },
     getWeatherImage: function (weatherType) {
       return "img/weathericons/" + weatherType + ".svg";
+    },
+    getCurrentHour: function () {
+      // Returns hour in correct ISO ex. 2020-06-10T22
+      var date = new Date();
+      date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+      return date.toISOString().substring(0, 13);
     },
   },
   beforeMount() {
