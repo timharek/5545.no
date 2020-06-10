@@ -2,8 +2,8 @@ var app = new Vue({
   el: "#app",
   data: {
     nowcast: {},
-    nextThreeHours: [],
-    forecastNextDays: [],
+    todayForecast: [],
+    nextDaysForecast: [],
   },
   methods: {
     getWeatherData: async function (url) {
@@ -36,12 +36,28 @@ var app = new Vue({
       var retrivedData = localStorage.getItem("localData");
 
       this.setWeather(JSON.parse(retrivedData).properties);
+      console.log(this.nowcast.to);
     },
     setWeather: function (weatherData) {
+      this.setNowCast(weatherData);
+      this.setRestOfTodayForecast(weatherData);
+    },
+    setNowCast: function (weatherData) {
+      var nowcastId = 0;
       weatherData.timeseries.forEach((forecast) => {
-        var forcastHour = forecast.time.substring(0, 13);
-        if (forcastHour === this.getCurrentHour()) {
+        var forcastHourWithDate = forecast.time.substring(0, 13);
+        var forecastFrom = Number(forecast.time.substring(11, 13));
+        var forecastTo = 0;
+        if (forcastHourWithDate === this.getCurrentHour()) {
+          if (forecastFrom == 23) {
+            forecastTo = "00";
+          } else {
+            forecastTo = forecastFrom + 1;
+          }
           this.nowcast = {
+            id: nowcastId,
+            from: forecastFrom,
+            to: forecastTo,
             weatherType: forecast.data.next_1_hours.summary.symbol_code,
             weatherImg: this.getWeatherImage(
               forecast.data.next_1_hours.summary.symbol_code
@@ -51,8 +67,10 @@ var app = new Vue({
             wind: forecast.data.instant.details.wind_speed,
           };
         }
+        nowcastId++;
       });
     },
+    setRestOfTodayForecast: function (weatherData) {},
     getWeatherImage: function (weatherType) {
       return "img/weathericons/" + weatherType + ".svg";
     },

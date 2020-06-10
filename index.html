@@ -18,6 +18,9 @@
     </header>
     <div id="app" class="wrapper">
       <div class="nowcast">
+        <div class="from-to">
+          <i class="far fa-clock"></i> {{ nowcast.from }}-{{ nowcast.to}}
+        </div>
         <img :src="nowcast.weatherImg" alt="" />
         <div class="type">
           <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
