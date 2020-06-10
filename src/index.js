@@ -1,15 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
-    current_date: "",
-    current_temperature: "",
-    current_wind: "",
-    current_rainMin: "",
-    current_rainMax: "",
-    current_rain: "",
-    current_weatherType: "",
-    current_weatherImg: "",
-    nowcast: [],
+    nowcast: {},
     nextThreeHours: [],
     forecastNextDays: [],
   },
@@ -49,18 +41,15 @@ var app = new Vue({
       weatherData.timeseries.forEach((forecast) => {
         var forcastHour = forecast.time.substring(0, 13);
         if (forcastHour === this.getCurrentHour()) {
-          this.current_weatherType =
-            forecast.data.next_1_hours.summary.symbol_code;
-          this.current_temperature =
-            forecast.data.instant.details.air_temperature;
-          this.current_rain =
-            forecast.data.next_1_hours.details.precipitation_amount;
-          this.current_wind = forecast.data.instant.details.wind_speed;
-          this.current_weatherImg = this.getWeatherImage(
-            this.current_weatherType
-          );
-
-          console.log(forecast.data.next_1_hours.summary.symbol_code);
+          this.nowcast = {
+            weatherType: forecast.data.next_1_hours.summary.symbol_code,
+            weatherImg: this.getWeatherImage(
+              forecast.data.next_1_hours.summary.symbol_code
+            ),
+            temperature: forecast.data.instant.details.air_temperature,
+            rain: forecast.data.next_1_hours.details.precipitation_amount,
+            wind: forecast.data.instant.details.wind_speed,
+          };
         }
       });
     },

@@ -18,11 +18,11 @@
     </header>
     <div id="app" class="wrapper">
       <div class="now-forecast">
-        <img :src="current_weatherImg" alt="" />
+        <img :src="nowcast.weatherImg" alt="" />
         <div class="type">
           <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
           <span class="temp"
-            >{{ current_temperature.toLocaleString('no-NB') }}<span class="unit"
+            >{{ nowcast.temperature.toLocaleString('no-NB') }}<span class="unit"
               >&deg;C</span
             ></span
           >
@@ -30,7 +30,7 @@
         <div class="type">
           <i aria-hidden="true" class="fas fa-umbrella"></i>
           <span class="rain"
-            >{{ current_rain.toLocaleString('no-NB') }}<span class="unit"
+            >{{ nowcast.rain.toLocaleString('no-NB') }}<span class="unit"
               >mm</span
             ></span
           >
@@ -38,7 +38,7 @@
         <div class="type">
           <i class="fas fa-wind"></i>
           <span class="wind"
-            >{{ current_wind.toLocaleString('no-NB') }}<span class="unit"
+            >{{ nowcast.wind.toLocaleString('no-NB') }}<span class="unit"
               >m/s</span
             ></span
           >
