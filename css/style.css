@@ -31,7 +31,7 @@ header h1 {
 }
 
 .wrapper {
-  padding-top: 20px;
+  padding: 20px;
   margin: 0 auto;
   max-width: 900px;
   /* display: flex;
@@ -40,19 +40,21 @@ header h1 {
 }
 
 .wrapper .nowcast {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  /* display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center; */
+  display: -ms-grid;
+  display: grid;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  justify-items: center;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas: "weatherType temp rain wind";
   position: relative;
-  padding: 20px;
+  padding: 30px;
   max-width: 100%;
   border: 1px solid #c3c3c3;
   border-radius: 10px;
@@ -60,26 +62,49 @@ header h1 {
   margin-bottom: 20px;
 }
 
+.wrapper .nowcast .temp {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: temp;
+}
+
+.wrapper .nowcast .rain {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: rain;
+}
+
+.wrapper .nowcast .wind {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: wind;
+}
+
 .wrapper .nowcast .from-to {
   position: absolute;
   padding: 10px;
   top: 0;
-  /* left: 0; */
+  left: 0;
 }
 
-.wrapper .nowcast .from-to,
-.wrapper .nowcast .from-to i {
+.wrapper .nowcast .from-to, .wrapper .nowcast .from-to i {
   font-size: 16px;
 }
 
-.wrapper .nowcast img {
+.wrapper .nowcast .weatherType {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: weatherType;
   width: 90px;
   margin-right: 20px;
 }
 
-.wrapper .nowcast .unit,
-.wrapper .nowcast i {
+.wrapper .nowcast .unit, .wrapper .nowcast i {
   font-size: 24px;
+}
+
+.wrapper .nowcast i {
+  color: #212121;
 }
 
 .wrapper .nowcast .type {
@@ -94,6 +119,30 @@ header h1 {
 
 .wrapper .nowcast .type:not(:last-child) {
   margin-right: 20px;
+}
+
+@media screen and (max-width: 690px) {
+  .wrapper .nowcast {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "weatherType temp" "weatherType rain" "weatherType wind";
+  }
+  .wrapper .nowcast .type {
+    font-size: 32px;
+    -ms-grid-column-align: start;
+        justify-self: start;
+  }
+  .wrapper .nowcast .type:not(:last-child) {
+    margin: 0;
+  }
+  .wrapper .nowcast i {
+    text-align: center;
+    min-width: 25px;
+    font-size: 16px;
+  }
+  .wrapper .nowcast .unit {
+    font-size: 20px;
+  }
 }
 
 .wrapper .forecast-table {

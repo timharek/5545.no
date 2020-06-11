@@ -21,16 +21,16 @@
         <div class="from-to">
           <i class="far fa-clock"></i> {{ nowcast.from }}-{{ nowcast.to}}
         </div>
-        <img :src="nowcast.weatherImg" alt="" />
-        <div class="type">
+        <img :src="nowcast.weatherImg" class="weatherType" alt="" />
+        <div class="type temp">
           <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
-          <span class="temp">{{ nowcast.temperature.toLocaleString('no-NB') }}<span class="unit">&deg;C</span></span>
+          <span class="temp">{{ nowcast.temperature.toLocaleString('no-NB') }}&deg;</span>
         </div>
-        <div class="type">
+        <div class="type rain">
           <i aria-hidden="true" class="fas fa-umbrella"></i>
           <span class="rain">{{ nowcast.rain.toLocaleString('no-NB') }}<span class="unit">mm</span></span>
         </div>
-        <div class="type">
+        <div class="type wind">
           <i class="fas fa-wind"></i>
           <span class="wind">{{ nowcast.wind.toLocaleString('no-NB') }}<span class="unit">m/s</span></span>
         </div>
