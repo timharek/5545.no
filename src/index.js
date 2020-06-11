@@ -63,7 +63,7 @@ var app = new Vue({
             });
         },
         setTodayForecast: function (weatherData) {
-            for (var index = this.nowcast.id + 1; index < weatherData.timeseries.length - 28; index++) {
+            for (var index = this.nowcast.id + 1; index < weatherData.timeseries.length; index++) {
                 var forecastDate = weatherData.timeseries[index].time.substring(0, 10);
                 var forecastFrom = weatherData.timeseries[index].time.substring(11, 13);
                 if (forecastDate == this.getTodaysDate()) {
