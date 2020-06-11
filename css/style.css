@@ -21,13 +21,27 @@ body {
 }
 
 header {
-  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   text-align: center;
   background: #fff;
+  padding: 20px;
 }
 
-header h1 {
-  margin-top: 0;
+header h1,
+header h2 {
+  margin: 0;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 .wrapper {
@@ -87,7 +101,8 @@ header h1 {
   left: 0;
 }
 
-.wrapper .nowcast .from-to, .wrapper .nowcast .from-to i {
+.wrapper .nowcast .from-to,
+.wrapper .nowcast .from-to i {
   font-size: 16px;
 }
 
@@ -99,7 +114,8 @@ header h1 {
   margin-right: 20px;
 }
 
-.wrapper .nowcast .unit, .wrapper .nowcast i {
+.wrapper .nowcast .unit,
+.wrapper .nowcast i {
   font-size: 24px;
 }
 
@@ -164,7 +180,8 @@ header h1 {
   }
 }
 
-.wrapper .forecast-table tbody th, .wrapper .forecast-table tbody td {
+.wrapper .forecast-table tbody th,
+.wrapper .forecast-table tbody td {
   border-bottom: 1px solid #ddd;
 }
 
