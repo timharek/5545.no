@@ -1,73 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5545.no</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script
-      src="https://kit.fontawesome.com/4904f970d2.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="src/vue.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1>Været på Vormedal</h1>
-      <h2>5545.no</h2>
-    </header>
-    <div id="app" class="wrapper">
-      <div class="nowcast">
-        <div class="from-to">
-          <i class="far fa-clock"></i> {{ nowcast.from }}-{{ nowcast.to}}
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>5545.no</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="https://kit.fontawesome.com/4904f970d2.js" crossorigin="anonymous"></script>
+        <script src="src/vue.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Været på Vormedal</h1>
+            <h2>5545.no</h2>
+        </header>
+        <div id="app" class="wrapper">
+            <div class="nowcast">
+                <div class="from-to"><i class="far fa-clock"></i> {{ nowcast.from }}-{{ nowcast.to}}</div>
+                <img :src="nowcast.weatherImg" class="weatherType" alt="" />
+                <div class="type temp">
+                    <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
+                    <span class="temp">{{ nowcast.temperature.toLocaleString('no-NB') }}&deg;</span>
+                </div>
+                <div class="type rain">
+                    <i aria-hidden="true" class="fas fa-umbrella"></i>
+                    <span class="rain">{{ nowcast.rain.toLocaleString('no-NB') }}<span class="unit">mm</span></span>
+                </div>
+                <div class="type wind">
+                    <i class="fas fa-wind"></i>
+                    <span class="wind">{{ nowcast.wind.toLocaleString('no-NB') }}<span class="unit">m/s</span></span>
+                </div>
+            </div>
+            <h1>I dag {{ todayDate }}</h1>
+            <div class="forecast">
+                <table class="forecast-table">
+                    <thead>
+                        <tr>
+                            <th class="time">
+                                <i class="far fa-clock"></i> <span class="heading-txt">Klokkeslett</span>
+                            </th>
+                            <th>Vær</th>
+                            <th>
+                                <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
+                                <span class="heading-txt">Temp.</span>
+                            </th>
+                            <th>
+                                <i aria-hidden="true" class="fas fa-umbrella"></i>
+                                <span class="heading-txt">Nedbør</span>
+                            </th>
+                            <th>
+                                <i aria-hidden="true" class="fas fa-wind"></i> <span class="heading-txt">Vind</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="forecast in todayForecast">
+                            <td class="time">
+                                {{ forecast.from }}
+                            </td>
+                            <td><img :src="forecast.weatherImg" alt="" class="weathertype" /></td>
+                            <td class="temp">
+                                {{ forecast.temperature.toLocaleString('no-NB') }} &deg;C
+                            </td>
+                            <td class="rain" v-if="forecast.rain > 0">
+                                {{ forecast.rain.toLocaleString('no-NB') }} mm
+                            </td>
+                            <td class="rain" v-else></td>
+                            <td class="wind">
+                                {{ forecast.wind.toLocaleString('no-NB') }} m/s
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <img :src="nowcast.weatherImg" class="weatherType" alt="" />
-        <div class="type temp">
-          <i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i>
-          <span class="temp">{{ nowcast.temperature.toLocaleString('no-NB') }}&deg;</span>
-        </div>
-        <div class="type rain">
-          <i aria-hidden="true" class="fas fa-umbrella"></i>
-          <span class="rain">{{ nowcast.rain.toLocaleString('no-NB') }}<span class="unit">mm</span></span>
-        </div>
-        <div class="type wind">
-          <i class="fas fa-wind"></i>
-          <span class="wind">{{ nowcast.wind.toLocaleString('no-NB') }}<span class="unit">m/s</span></span>
-        </div>
-      </div>
-      <h1>I dag {{ todayDate }}</h1>
-      <table class="forecast-table">
-        <thead>
-          <tr>
-            <th class="time"><i class="far fa-clock"></i> <span class="heading-txt">Klokkeslett</span></th>
-            <th>Vær</th>
-            <th><i aria-hidden="true" class="fas fa-thermometer-three-quarters"></i> <span class="heading-txt">Temp.</span></th>
-            <th><i aria-hidden="true" class="fas fa-umbrella"></i> <span class="heading-txt">Nedbør</span></th>
-            <th><i aria-hidden="true" class="fas fa-wind"></i> <span class="heading-txt">Vind</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="forecast in todayForecast">
-            <td class="time">
-              {{ forecast.from }}
-            </td>
-            <td><img :src="forecast.weatherImg" alt="" class="weathertype"></td>
-            <td class="temp">
-              {{ forecast.temperature.toLocaleString('no-NB') }} &deg;C
-            </td>
-            <td class="rain" v-if="forecast.rain > 0">
-              {{ forecast.rain.toLocaleString('no-NB') }} mm
-            </td>
-            <td class="rain" v-else></td>
-            <td class="wind">
-              {{ forecast.wind.toLocaleString('no-NB') }} m/s
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <script src="src/index.js"></script>
-  </body>
+        <script src="src/index.js"></script>
+    </body>
 </html>
 <!-- Bergen: 60.388068, 5.331854 -->
 <!-- Thailand: 13.753939, 100.501289 -->

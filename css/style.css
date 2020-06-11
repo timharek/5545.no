@@ -161,35 +161,43 @@ header h2 {
   }
 }
 
-.wrapper .forecast-table {
+.wrapper .forecast {
   padding: 10px;
   border: 1px solid #c3c3c3;
   border-radius: 10px;
   background: #fff;
-  width: 100%;
   margin-bottom: 20px;
 }
 
-.wrapper .forecast-table .time {
+.wrapper .forecast .forecast-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.wrapper .forecast .forecast-table .time {
   max-width: 150px;
 }
 
 @media screen and (max-width: 495px) {
-  .wrapper .forecast-table .heading-txt {
+  .wrapper .forecast .forecast-table .heading-txt {
     display: none;
   }
 }
 
-.wrapper .forecast-table tbody th,
-.wrapper .forecast-table tbody td {
+.wrapper .forecast .forecast-table tbody th,
+.wrapper .forecast .forecast-table tbody td {
   border-bottom: 1px solid #ddd;
 }
 
-.wrapper .forecast-table tbody td {
+.wrapper .forecast .forecast-table tbody td {
   text-align: center;
 }
 
-.wrapper .forecast-table tbody .weathertype {
+.wrapper .forecast .forecast-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.wrapper .forecast .forecast-table tbody .weathertype {
   max-width: 50px;
 }
 /*# sourceMappingURL=style.css.map */

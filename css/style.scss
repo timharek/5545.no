@@ -148,34 +148,39 @@ header {
         }
     }
 
-    .forecast-table {
+    .forecast {
         padding: 10px;
         border: 1px solid #c3c3c3;
         border-radius: 10px;
         background: #fff;
-        width: 100%;
         margin-bottom: 20px;
-
-        .time {
-            max-width: 150px;
-        }
-
-        @media screen and (max-width: 495px) {
-            .heading-txt {
-                display: none;
+        .forecast-table {
+            border-collapse: collapse;
+            width: 100%;
+            .time {
+                max-width: 150px;
             }
-        }
 
-        tbody {
-            th,
-            td {
-                border-bottom: 1px solid #ddd;
+            @media screen and (max-width: 495px) {
+                .heading-txt {
+                    display: none;
+                }
             }
-            td {
-                text-align: center;
-            }
-            .weathertype {
-                max-width: 50px;
+
+            tbody {
+                th,
+                td {
+                    border-bottom: 1px solid #ddd;
+                }
+                td {
+                    text-align: center;
+                }
+                tr:hover {
+                    background-color: #f5f5f5;
+                }
+                .weathertype {
+                    max-width: 50px;
+                }
             }
         }
     }
