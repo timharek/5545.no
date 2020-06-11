@@ -36,8 +36,6 @@ var app = new Vue({
       var retrivedData = localStorage.getItem("localData");
 
       this.setWeather(JSON.parse(retrivedData).properties);
-
-      console.log(this.todayForecast[0].weatherType);
     },
     setWeather: function (weatherData) {
       this.setNowCast(weatherData);
@@ -81,7 +79,7 @@ var app = new Vue({
             } else {
               forecastTo = forecastFrom + 1;
             }
-            console.log(forecastFrom);
+
             this.todayForecast.push({
               id: index,
               from: forecastFrom,

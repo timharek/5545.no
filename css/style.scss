@@ -17,8 +17,20 @@ body {
   }
 }
 
+.temp {
+    color: #cf0000;
+  }
+
+  .rain {
+    color: #0077d6;
+  }
+
+  .wind {
+    color: #4d4d4d;
+  }
+
 header {
-  height: 280px;
+  height: 150px;
   text-align: center;
   background: #fff;
 
@@ -32,26 +44,30 @@ header {
   margin: 0 auto;
   max-width: 900px;
 
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;*/
 
   .nowcast {
     display: flex;
+    justify-content: center;
+    align-content: center;
     align-items: center;
     position: relative;
 
     padding: 20px;
-    max-width: 750px;
+    max-width: 100%;
     border: 1px solid #c3c3c3;
     border-radius: 10px;
     background: #fff;
+
+    margin-bottom: 20px;
 
     .from-to {
       position: absolute;
       padding: 10px;
       top: 0;
-      left: 0;
+      /* left: 0; */
       &,
       i {
         font-size: 16px;
@@ -76,18 +92,31 @@ header {
       &:not(:last-child) {
         margin-right: 20px;
       }
+    }
+  }
 
-      .temp {
-        color: #cf0000;
-      }
+  .forecast-table {
+    padding: 10px;
+    border: 1px solid #c3c3c3;
+    border-radius: 10px;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 20px;
 
-      .rain {
-        color: #0077d6;
-      }
+    .time {
+        width: 150px;
+    }
 
-      .wind {
-        color: #4d4d4d;
-      }
+    tbody {
+        th, td {
+            border-bottom: 1px solid #ddd;
+        }
+        td {
+            text-align: center;
+        }
+        .weathertype {
+            max-width: 50px;
+        }
     }
   }
 }

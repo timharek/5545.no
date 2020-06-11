@@ -8,8 +8,20 @@ body {
   color: #212121;
 }
 
+.temp {
+  color: #cf0000;
+}
+
+.rain {
+  color: #0077d6;
+}
+
+.wind {
+  color: #4d4d4d;
+}
+
 header {
-  height: 280px;
+  height: 150px;
   text-align: center;
   background: #fff;
 }
@@ -22,37 +34,37 @@ header h1 {
   padding-top: 20px;
   margin: 0 auto;
   max-width: 900px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;*/
 }
 
 .wrapper .nowcast {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: relative;
   padding: 20px;
-  max-width: 750px;
+  max-width: 100%;
   border: 1px solid #c3c3c3;
   border-radius: 10px;
   background: #fff;
+  margin-bottom: 20px;
 }
 
 .wrapper .nowcast .from-to {
   position: absolute;
   padding: 10px;
   top: 0;
-  left: 0;
+  /* left: 0; */
 }
 
 .wrapper .nowcast .from-to,
@@ -84,15 +96,28 @@ header h1 {
   margin-right: 20px;
 }
 
-.wrapper .nowcast .type .temp {
-  color: #cf0000;
+.wrapper .forecast-table {
+  padding: 10px;
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
+  background: #fff;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.wrapper .nowcast .type .rain {
-  color: #0077d6;
+.wrapper .forecast-table .time {
+  width: 150px;
 }
 
-.wrapper .nowcast .type .wind {
-  color: #4d4d4d;
+.wrapper .forecast-table tbody th, .wrapper .forecast-table tbody td {
+  border-bottom: 1px solid #ddd;
+}
+
+.wrapper .forecast-table tbody td {
+  text-align: center;
+}
+
+.wrapper .forecast-table tbody .weathertype {
+  max-width: 50px;
 }
 /*# sourceMappingURL=style.css.map */
