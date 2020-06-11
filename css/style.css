@@ -33,7 +33,7 @@ header {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   text-align: center;
-  background: #fff;
+  background: white;
   padding: 20px;
 }
 
@@ -48,16 +48,9 @@ header h2 {
   padding: 20px;
   margin: 0 auto;
   max-width: 900px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;*/
 }
 
 .wrapper .nowcast {
-  /* display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center; */
   display: -ms-grid;
   display: grid;
   -webkit-box-align: center;
@@ -72,7 +65,7 @@ header h2 {
   max-width: 100%;
   border: 1px solid #c3c3c3;
   border-radius: 10px;
-  background: #fff;
+  background: white;
   margin-bottom: 20px;
 }
 
@@ -165,8 +158,7 @@ header h2 {
   padding: 10px;
   border: 1px solid #c3c3c3;
   border-radius: 10px;
-  background: #fff;
-  margin-bottom: 20px;
+  background: white;
 }
 
 .wrapper .forecast .forecast-table {
@@ -199,5 +191,30 @@ header h2 {
 
 .wrapper .forecast .forecast-table tbody .weathertype {
   max-width: 50px;
+}
+
+footer {
+  padding: 20px;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #0077d6;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+a:hover {
+  opacity: 0.5;
 }
 /*# sourceMappingURL=style.css.map */

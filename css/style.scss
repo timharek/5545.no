@@ -5,6 +5,8 @@ $primary-dark-color: #212121;
 $secondary-dark-color: #555;
 $primary-light-color: white;
 
+$rain-color: #0077d6;
+
 html,
 body {
     margin: 0;
@@ -22,7 +24,7 @@ body {
 }
 
 .rain {
-    color: #0077d6;
+    color: $rain-color;
 }
 
 .wind {
@@ -35,7 +37,7 @@ header {
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    background: #fff;
+    background: $primary-light-color;
     padding: 20px;
 
     h1,
@@ -50,15 +52,7 @@ header {
     margin: 0 auto;
     max-width: 900px;
 
-    /* display: flex;
-  justify-content: center;
-  align-items: center;*/
-
     .nowcast {
-        /* display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center; */
         display: grid;
         align-items: center;
         justify-items: center;
@@ -72,7 +66,7 @@ header {
         max-width: 100%;
         border: 1px solid #c3c3c3;
         border-radius: 10px;
-        background: #fff;
+        background: $primary-light-color;
 
         margin-bottom: 20px;
 
@@ -152,8 +146,8 @@ header {
         padding: 10px;
         border: 1px solid #c3c3c3;
         border-radius: 10px;
-        background: #fff;
-        margin-bottom: 20px;
+        background: $primary-light-color;
+
         .forecast-table {
             border-collapse: collapse;
             width: 100%;
@@ -183,5 +177,24 @@ header {
                 }
             }
         }
+    }
+}
+
+footer {
+    padding: 20px;
+    background: $primary-light-color;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 500;
+    color: $rain-color;
+    opacity: 1;
+    transition: opacity 0.3s;
+    &:hover {
+        opacity: 0.5;
     }
 }
