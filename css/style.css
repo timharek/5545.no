@@ -155,7 +155,13 @@ header h1 {
 }
 
 .wrapper .forecast-table .time {
-  width: 150px;
+  max-width: 150px;
+}
+
+@media screen and (max-width: 495px) {
+  .wrapper .forecast-table .heading-txt {
+    display: none;
+  }
 }
 
 .wrapper .forecast-table tbody th, .wrapper .forecast-table tbody td {

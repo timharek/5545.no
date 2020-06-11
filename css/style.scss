@@ -150,7 +150,13 @@ header {
     margin-bottom: 20px;
 
     .time {
-        width: 150px;
+        max-width: 150px;
+    }
+
+    @media screen and (max-width: 495px) {
+        .heading-txt {
+            display: none;
+        }
     }
 
     tbody {
