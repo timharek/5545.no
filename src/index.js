@@ -1,6 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
+    todayDate: "",
     nowcast: {},
     todayForecast: [],
     nextDaysForecast: [],
@@ -111,6 +112,7 @@ var app = new Vue({
     },
   },
   beforeMount() {
+    this.todayDate = new Date().toLocaleDateString();
     this.getWeather("59.355091", "5.323378"); // Vormedal
     Array.prototype.insert = function (index, item) {
       this.splice(index, 0, item);
